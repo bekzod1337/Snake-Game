@@ -25,8 +25,8 @@ const CONTROLS = [
   { key: 'd', x: 1, y: 0 },
 ];
 const INITIAL_SPEED = 150;
-const SPEED_DECREMENT = 5;
-const MIN_SPEED = 50;
+const SPEED_DECREMENT = 4;
+const MIN_SPEED = 70;
 
 export default function SnakeGame() {
   const [snake, setSnake] = useState(INITIAL_SNAKE);
@@ -154,6 +154,35 @@ export default function SnakeGame() {
         Restart
       </button>
       <div className="text-white text-lg">Speed: {speed}ms</div>
+      <div className="flex gap-2 mt-4">
+  <button
+    onClick={() => updateDirection("w")}
+    className="p-4 bg-gray-700 text-white rounded-md"
+  >
+    W
+  </button>
+</div>
+<div className="flex gap-2">
+  <button
+    onClick={() => updateDirection("a")}
+    className="p-4 bg-gray-700 text-white rounded-md"
+  >
+    A
+  </button>
+  <button
+    onClick={() => updateDirection("s")}
+    className="p-4 bg-gray-700 text-white rounded-md"
+  >
+    S
+  </button>
+  <button
+    onClick={() => updateDirection("d")}
+    className="p-4 bg-gray-700 text-white rounded-md"
+  >
+    D
+  </button>
+</div>
+
       <footer>
         <p className="text-center text-sm text-gray-500 dark:text-gray-400">
           Created by{' '}
