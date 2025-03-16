@@ -1,12 +1,18 @@
 'use client';
 import { useState, useEffect } from 'react';
 
-const eatSound = new Audio('/sound/eat.mp3');
-const gameOverSound = new Audio('/sound/gameover.mp3');
+let gameOverSound;
+if (typeof window !== "undefined") {
+  gameOverSound = new Audio('/sound/gameover.mp3');
+}
+
 function playEatSound() {
-    const sound = new Audio('/sound/eat.mp3'); // Har safar yangi obyekt
+  if (typeof window !== "undefined") {
+    const sound = new Audio('/sound/eat.mp3');
     sound.play();
   }
+}
+
   
 
 const GRID_SIZE = 20;
@@ -115,7 +121,12 @@ export default function SnakeGame() {
     setFood(generateFood(INITIAL_SNAKE));
     setIsGameOver(false);
     setSpeed(INITIAL_SPEED);
+  
+    if (gameOverSound) {
+      gameOverSound.currentTime = 0; 
+    }
   }
+  
 
   return (
     <div className="flex flex-col items-center gap-4 p-4 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 min-h-screen">
@@ -143,6 +154,19 @@ export default function SnakeGame() {
         Restart
       </button>
       <div className="text-white text-lg">Speed: {speed}ms</div>
+      <footer>
+        <p className="text-center text-sm text-gray-500 dark:text-gray-400">
+          Created by{' '}
+          <a
+            href="www.bekzod1337.uz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:underline"
+            >
+            Bekzod
+            </a>
+        </p>
+      </footer>
     </div>
   );
 }
